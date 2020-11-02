@@ -1,0 +1,27 @@
+version: '3.7'
+
+networks:
+  lc-backend:
+    name: lc-backend
+    driver: 'bridge'
+
+services:
+  filters-php:
+    container_name: filters-php
+    build:
+      context: './'
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/filters
+    networks:
+      - lc-backend
+  filters-serach:
+    container_name: filters-serach
+    image: elasticsearch:7.9.3
+    environment:
+      - discovery.type=single-node
+    ports:
+    - 9200:9200
+    - 9300:9300
+    networks:
+    - lc-backend
