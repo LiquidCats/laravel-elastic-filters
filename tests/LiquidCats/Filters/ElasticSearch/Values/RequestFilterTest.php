@@ -4,50 +4,54 @@ declare(strict_types=1);
 
 namespace Test\LiquidCats\Filters\ElasticSearch\Values;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use LiquidCats\Filters\Model\Searchable;
+use LiquidCats\Filters\ElasticSearch\Mapping;
+use Test\LiquidCats\Filters\AbstractTestCase;
 use LiquidCats\Filters\Contracts\BuilderContract;
-use LiquidCats\Filters\Contracts\Filtration\FilterContract;
 use LiquidCats\Filters\Contracts\MappingContract;
 use LiquidCats\Filters\ElasticSearch\AbstractIndex;
+use LiquidCats\Filters\Contracts\Filtration\FilterContract;
+use LiquidCats\Filters\ElasticSearch\Filtration\RequestFilter;
 use LiquidCats\Filters\ElasticSearch\Filtration\Handlers\AbstractHandler;
 use LiquidCats\Filters\ElasticSearch\Filtration\Providers\DefaultProvider;
 use LiquidCats\Filters\ElasticSearch\Filtration\Providers\MultiOptionsProvider;
-use LiquidCats\Filters\ElasticSearch\Filtration\RequestFilter;
-use LiquidCats\Filters\ElasticSearch\Mapping;
-use LiquidCats\Filters\Model\Searchable;
-use Test\LiquidCats\Filters\AbstractTestCase;
 
 /**
- * Class RequestFilterTest
- * @package Test\LiquidCats\Filters\ElasticSearch\Values
+ * Class RequestFilterTest.
+ *
  * @author Ilya Shabanov i.s.shabanov@ya.ru
+ *
+ * @internal
+ * @coversNothing
  */
 class RequestFilterTest extends AbstractTestCase
 {
     /**
      * @test
+     *
      * @throws
      */
-    public function it_can_create_filter_object_from_request_and_forward_calls_to_builder(): void
+    public function itCanCreateFilterObjectFromRequestAndForwardCallsToBuilder(): void
     {
         AbstractHandler::register(DefaultProvider::make('test1'));
         AbstractHandler::register(MultiOptionsProvider::make('test2', [0 => 'z', 1 => 'a', 2 => 'b', 'c']));
-        //
+
         $req = Request::capture();
         $req->query->add([
             'filter_test1' => '23',
             'filter_test2' => '1,2,3',
         ]);
-        //
+
         $this->app->instance(Request::class, $req);
-        //
+
         /** @var BuilderContract $builder */
         $builder = $this->app[BuilderContract::class];
         /** @var FilterContract $filter */
         $filter = $this->app->make(FilterContract::class, compact('builder'));
-        //
+
         self::assertInstanceOf(RequestFilter::class, $filter);
         $configurator = $this->getFakeModel()::getConfigurator();
         $filter->apply($configurator);
@@ -64,7 +68,7 @@ class RequestFilterTest extends AbstractTestCase
         self::assertIsArray($range);
         self::assertArrayHasKey('test2', $range['terms']);
         self::assertIsArray($range['terms']['test2']);
-        self::assertEquals(['1','2','3'], $range['terms']['test2']);
+        self::assertEquals(['1', '2', '3'], $range['terms']['test2']);
 
         $term = $must[1];
         self::assertArrayHasKey('term', $term);
@@ -74,7 +78,7 @@ class RequestFilterTest extends AbstractTestCase
 
     protected function getFakeModel(): Model
     {
-        return new class extends Model {
+        return new class() extends Model {
             use Searchable;
 
             protected static $indexConfigurator = FakeIndexConfigurator::class;
@@ -85,7 +89,7 @@ class RequestFilterTest extends AbstractTestCase
 class FakeIndexConfigurator extends AbstractIndex
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getMapping(): MappingContract
     {
@@ -93,7 +97,7 @@ class FakeIndexConfigurator extends AbstractIndex
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function mapToIndex($data): array
     {
@@ -101,7 +105,7 @@ class FakeIndexConfigurator extends AbstractIndex
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getName(): string
     {

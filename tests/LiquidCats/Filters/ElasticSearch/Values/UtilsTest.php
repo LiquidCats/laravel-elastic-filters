@@ -9,14 +9,17 @@ use LiquidCats\Filters\ElasticSearch\Utils;
 use Test\LiquidCats\Filters\AbstractTestCase;
 
 /**
- * Class UtilsTest
- * @package Test\LiquidCats\Filters\ElasticSearch\Values
+ * Class UtilsTest.
+ *
  * @author Ilya Shabanov i.s.shabanov@ya.ru
+ *
+ * @internal
+ * @coversNothing
  */
 class UtilsTest extends AbstractTestCase
 {
     /** @test */
-    public function it_can_execute_mapIds(): void
+    public function itCanExecuteMapIds(): void
     {
         $data = [];
         Arr::set($data, 'hits.hits', $items = [
@@ -29,7 +32,7 @@ class UtilsTest extends AbstractTestCase
     }
 
     /** @test */
-    public function it_can_execute_getTotalCount(): void
+    public function itCanExecuteGetTotalCount(): void
     {
         $data = [];
         Arr::set($data, 'hits.total', $total = 10);
@@ -40,7 +43,7 @@ class UtilsTest extends AbstractTestCase
     }
 
     /** @test */
-    public function it_can_execute_getColumns(): void
+    public function itCanExecuteGetColumns(): void
     {
         $data = [];
         Arr::set($data, '_payload.body._source', $columns = ['c1', 'c2']);
@@ -50,7 +53,7 @@ class UtilsTest extends AbstractTestCase
     }
 
     /** @test */
-    public function it_can_execute_getData(): void
+    public function itCanExecuteGetData(): void
     {
         $data = [];
         Arr::set($data, 'hits.hits', $items = [
