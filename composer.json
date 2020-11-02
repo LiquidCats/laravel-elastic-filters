@@ -16,6 +16,8 @@
         "elasticsearch/elasticsearch": "^7.9"
     },
     "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
@@ -31,5 +33,8 @@
         "psr-4": {
             "Test\\LiquidCats\\Filters\\": "tests/LiquidCats/Filters"
         }
+    },
+    "scripts": {
+        "fix": "@php vendor/bin/php-cs-fixer fix"
     }
 }
