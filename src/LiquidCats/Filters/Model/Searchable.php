@@ -103,12 +103,10 @@ trait Searchable
         $self = new static();
 
         Collection::macro('searchable', function () use ($self) {
-            // @var Collection $this
             $self->queueMakeSearchable($this);
         });
 
         Collection::macro('unsearchable', function () use ($self) {
-            // @var Collection $this
             $self->queueRemoveFromSearch($this);
         });
     }
