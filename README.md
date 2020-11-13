@@ -17,3 +17,8 @@ Filtration for Laravel with Elastic Search
  - Import to Index
 
 3. Digging Dipper
+
+# Model 
+
+
+
