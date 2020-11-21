@@ -55,7 +55,9 @@ class UserIndex extends AbstractIndex {
 Use provided console commands to create, drop and import 
 
 `php artisan search:import "[model class here]"`
+
 `php artisan search:drop-index "[configurator class here]"`
+
 `php artisan search:create-index "[configurator class here]"`
 
 
