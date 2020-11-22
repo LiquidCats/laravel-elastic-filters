@@ -35,7 +35,6 @@
         }
     },
     "scripts": {
-        "fix": "@php vendor/bin/php-cs-fixer fix",
-        "test": "@php vendor/bin/phpunit --no-configuration tests"
+        "fix": "@php vendor/bin/php-cs-fixer fix"
     }
 }
