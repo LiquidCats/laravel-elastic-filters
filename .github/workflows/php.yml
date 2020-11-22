@@ -29,6 +29,5 @@ jobs:
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Run Test Suite
+    - name: Run Test Suites
       run: composer test
