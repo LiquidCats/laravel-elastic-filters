@@ -28,7 +28,7 @@ class CreateIndex extends Command
     /**
      * @var string
      */
-    protected $description = 'Create an search index';
+    protected $description = 'Create a search index';
 
     /**
      * @throws BindingResolutionException

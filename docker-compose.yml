@@ -15,7 +15,7 @@ services:
       - ./:/var/www/filters
     networks:
       - lc-backend
-  filters-serach:
+  filters-search:
     container_name: filters-serach
     image: elasticsearch:7.9.3
     environment:

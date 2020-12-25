@@ -7,6 +7,7 @@ namespace LiquidCats\Filters;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Application;
 use LiquidCats\Filters\Console\Import;
 use Illuminate\Support\ServiceProvider;
 use LiquidCats\Filters\Console\DropIndex;
@@ -28,6 +29,7 @@ use LiquidCats\Filters\ElasticSearch\Filtration\Handlers\AbstractHandler;
  * Class FiltersServiceProvider.
  *
  * @author Ilya Shabanov i.s.shabanov@ya.ru
+ * @property Application $app
  */
 class FiltersServiceProvider extends ServiceProvider
 {
@@ -38,7 +40,7 @@ class FiltersServiceProvider extends ServiceProvider
             $cfg = $app[Repository::class];
 
             return ClientBuilder::create()
-                ->setHosts($cfg->get('services.search.hosts', ['localhost:9300']))
+                ->setHosts($cfg->get('services.search.hosts'))
                 ->build()
             ;
         });

@@ -25,7 +25,7 @@ class DropIndex extends Command
     /**
      * @var string
      */
-    protected $description = 'Drop an search index';
+    protected $description = 'Drop a search index';
 
     /**
      * @throws BindingResolutionException

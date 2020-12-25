@@ -21,6 +21,8 @@ class Import extends Command
 
     protected $name = 'search:import';
 
+    protected $description = 'Will start importing process for given model';
+
     public function handle(): void
     {
         /** @var Model|Searchable $model */
