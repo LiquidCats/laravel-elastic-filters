@@ -2,7 +2,7 @@
 
 [![Packagist](https://img.shields.io/packagist/v/liquid-cats/laravel-elastic-filters.svg)](https://packagist.org/packages/liquid-cats/laravel-elastic-filters)
 [![Packagist](https://img.shields.io/packagist/dt/liquid-cats/laravel-elastic-filters.svg)](https://packagist.org/packages/liquid-cats/laravel-elastic-filters)
-![PHP Composer](https://github.com/LiquidCats/laravel-filters/workflows/PHP%20Composer/badge.svg?branch=main)
+![Basic Testing](https://github.com/LiquidCats/laravel-filters/workflows/Basic%20Testing/badge.svg)
 
 Faster way to integrate ElasticSearch into your Laravel application
 
