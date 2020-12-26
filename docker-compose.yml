@@ -16,7 +16,7 @@ services:
     networks:
       - lc-backend
   filters-search:
-    container_name: filters-serach
+    container_name: filters-search
     image: elasticsearch:7.9.3
     environment:
       - discovery.type=single-node
